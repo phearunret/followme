@@ -1,0 +1,95 @@
+/*
+ * Start Bootstrap - Landing Page (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700;}
+ 
+#debt_div{ width:100%; height: 90%; position: absolute; top:0; z-index: 0;}
+.overdue-wrpper{ width: 30%; height: 60%; background: #333; border: 1px solid #ddd; position: fixed; bottom: 0; right: 0; z-index: 1; opacity: 0.5;}
+.error { margin: 0 auto; text-align: center;}
+.error-code { bottom: 60%; color: #2d353c; font-size: 96px; line-height: 100px;}
+.error-desc {font-size: 12px; color: #647788;}
+.point-color{ bottom: 20%; position: fixed; left: 2%; z-index: 1000; width: 17%; border: 1px solid #ddd;background: #fff; /* opacity: 0.5;*/}
+ 
+#map_canvas{  width:100%; height:100%; position: fixed; top: 0px; left: 0px; z-index: 0}
+.in_30_days{ color: #f89d1f; }
+.in_60_days{ color: #ec1f27; }
+.in_90_days{ color: #a50404;}
+.no_overdue{ color: #fcef00; }
+.fco{ color: #1b66b5; }
+
+.other_col{ color: #f6ee23;}
+.fco-wrpper{ position: relative; width: 430px; height: 110px;}
+.fco-img{ position: absolute; left: 0;  width: 28%; }
+.txt-addr{ position: absolute; right: 0; width: 70%; }
+
+.itm-lst{ list-style: none; border-bottom: 1px solid #dddddd; font-weight: normal; padding-top: 4px;}
+.itm-lst:last-child{ border-bottom: 0;}
+.fco-wrapper{ height: 100px; clear: both; }
+.img-left{ float: left;}
+.fco-right{ width: 80%; float: right;}
+.btn-lnk{
+	padding: 0 10px;
+}
+/* color-helper */
+[class*="color-helper-"]:before { font-family: "Arial", sans-serif; }
+#color-helper a {  text-decoration: none; }
+#color-helper a:hover {  text-decoration: none; }
+#color-helper ul { list-style: none; margin: 0; padding: 0; }
+ 
+#color-helper { left: 0; position: fixed; top: 150px; }
+#color-helper a { background: #333; color: #fff; display: block; height: 35px; font: 13px "Open Sans", sans-serif; line-height: 35px; position: relative; text-align: center; width: 35px; }
+#color-helper a span { line-height: 35px; left: -150px; position: absolute; text-align:center; width:150px;}
+#color-helper a:hover span { left: 100%;}
+
+#color-helper a[class*="overdue_in_30_days"],
+#color-helper a[class*="overdue_in_30_days"]:hover,
+#color-helper a[class*="overdue_in_30_days"] span { background:#f8d11a; }
+
+#color-helper a[class*="overdue_in_60_days"],
+#color-helper a[class*="overdue_in_60_days"]:hover,
+#color-helper a[class*="overdue_in_60_days"] span { background: #9c00ff; }
+
+#color-helper a[class*="overdue_in_90_days"],
+#color-helper a[class*="overdue_in_90_days"]:hover,
+#color-helper a[class*="overdue_in_90"] span { background: #ff0000; } 
+
+#color-helper a[class*="overdue_over_91_days"],
+#color-helper a[class*="overdue_over_91_days"]:hover,
+#color-helper a[class*="overdue_over_91_days"] span { background: #e10000; }  
+
+#color-helper a[class*="no_overdue"],
+#color-helper a[class*="no_overdue"]:hover,
+#color-helper a[class*="no_overdue"] span { background: #6fe312; } 
+
+#color-helper a[class*="search"],
+#color-helper a[class*="search"]:hover,
+#color-helper a[class*="search"] span { background:#3b5998;}   
+
+#color-helper a[class*="fcc-o"],
+#color-helper a[class*="fcc-o"]:hover,
+#color-helper a[class*="fcc-o"] span { background:#2e40a7;}
+
+#color-helper a[class*="leasee-comment"],
+#color-helper a[class*="leasee-comment"]:hover,
+#color-helper a[class*="leasee-comment"] span { background: #acb72c; }  
+
+#color-helper a[class*="refrash"],
+#color-helper a[class*="refrash"]:hover,
+#color-helper a[class*="refrash"] span { background: #517fa4; }  
+
+

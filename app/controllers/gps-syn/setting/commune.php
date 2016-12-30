@@ -1,0 +1,146 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Commune extends CI_Controller {
+
+	function __construct() {
+        parent::__construct();
+
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->database();
+        $this->load->model('setting/address_model', 'addr');
+        $this->load->library('googlemaps');
+        $this->load->model('map_model', 'maps');
+
+
+    }
+ 
+	public function index($id = null)
+	{
+ 
+        $data['main_title'] = 'Records- Communes';
+        $data['query'] = $this->addr->rquery($id, 'tu_commune', null);
+		$data['template'] ='commune/index';
+		$this->load->view('setting/includes/template', $data);
+	}
+
+    public function edit($id = null)
+    {
+       
+        $this->form_validation->set_rules('commu_nu_latitude', 'Latitude', 'trim|required');
+        $this->form_validation->set_rules('commu_nu_longitude', 'Longitude', 'trim|required');
+        
+        
+        //validate form input
+        if ($this->form_validation->run() == FALSE)
+        {
+          
+            $data['main_title'] = 'Edit';
+            $data['query'] = $this->addr->rquery($id, 'tu_commune', 'commu_id');
+            //echo $this->db->last_query();
+            $data['template'] ='commune/edit';
+            $this->load->view('setting/includes/template', $data);
+
+        }
+        else
+        {
+        
+            $data = array(
+            'commu_nu_latitude' => $this->input->post('commu_nu_latitude'),
+            'commu_nu_longitude' => $this->input->post('commu_nu_longitude')
+            );
+
+            
+            // saved form data into database
+            if ($this->addr->modify('tu_commune', $data, 'commu_id'))
+            {
+                //echo $this->db->last_query();
+                $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully saved!  </div>');
+                redirect('setting/commune/edit/' . $this->input->post('id') );
+            }
+            else
+            {
+                // error
+                $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
+                redirect('setting/commune/edit/' . $this->input->post('id') );
+            }
+        }
+        
+       
+    }
+
+    public function distr()
+    {
+ 
+    
+        $query = $this->db->get_where('tu_district', array('prvin_id' => $this->input->post('prvin_id')))->result();
+
+        if(count($query)){
+
+            $str = '<option value="0"> [Select Districts] </option>';
+            
+            foreach( $query as $row ){
+
+                $str .= '<option value ="'.$row->distr_id.'">';
+                $str .= $row->distr_desc_en;
+                $str.= '</option>';
+
+            }
+
+            echo $str;     
+
+        }
+    
+    }
+
+     public function distr_id()
+    {
+
+    
+        $query = $this->db->get_where('tu_commune', array('distr_id' => $this->input->post('distr_id')))->result();
+
+        if(count($query)){
+            
+            foreach($query as $row){
+
+                $str = '<tr>';
+                $str .= '<td>' .$row->commu_id. '</td>';
+                $str .= '<td>' .$row->commu_desc_en. '</td>';
+                $str .= '<td>' .$row->commu_nu_latitude. '</td>';
+                $str .= '<td>' .$row->commu_nu_longitude. '</td>';
+                $str .= '<td>' . anchor('setting/commune/track/' .$row->commu_id , 'track'). '</td>'; 
+                $str .= '<td>' . anchor('setting/commune/edit/' .$row->commu_id , 'Edit'). '</td>';
+                echo $str.= '</tr>';
+
+            }     
+
+        }
+        
+    }
+
+    public function track($id = null )
+    {
+
+        $config['center'] = '11.562108,104.888535'; 
+        $config['zoom'] = 7;
+        $config['apikey'] = 'AIzaSyDKrPtf6JLgV2WTKchsK4SEY7q38sFRD5Y';
+        $this->googlemaps->initialize($config);
+        $coordinate = $this->addr->rquery($id, 'tu_commune', 'commu_id');
+        $marker = array();
+        $marker['position'] = $coordinate->commu_nu_latitude.','. $coordinate->commu_nu_longitude; 
+        $marker['draggable'] = true;
+        $marker['ondragend'] = 'updateDatabase(event.latLng.lat(), event.latLng.lng());';
+        $this->googlemaps->add_marker($marker);
+ 
+        $data['map'] = $this->googlemaps->create_map();
+        $data['main_title'] = 'Statistics Collection';
+        $data['id'] = $id;
+        $data['query'] = $this->addr->rquery($id, 'tu_commune', 'commu_id');
+        $data['template'] ='commune/search';
+        $this->load->view('setting/includes/template', $data);
+    }
+ 
+    
+    
+}//end class
