@@ -8,6 +8,18 @@ class Maps extends CI_Controller {
         $this->load->model('Map_model', 'map');
     }
 
+    public function t(){
+      $query = $this->db->select('commu_id,commu_nu_latitude, commu_nu_longitude')->get_where('tu_commune_new',array('commu_nu_latitude !=' => null))->result();
+
+        if(count($query)){
+            foreach($query as $row ){
+                $this->db->where(array('commu_id' => $row->commu_id));
+                $this->db->update('tu_commune', array('commu_nu_latitude' => $row->commu_nu_latitude, 'commu_nu_longitude' => $row->commu_nu_longitude ));
+            }
+            //print_r($query);
+        }
+    }
+
 	public function index()
 	{
  
@@ -47,6 +59,7 @@ class Maps extends CI_Controller {
             }
                 
         }
+        //echo $this->db->last_query();
             
         echo json_encode($data);
 

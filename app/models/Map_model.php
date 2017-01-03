@@ -24,14 +24,14 @@ class Map_model extends CI_Model {
                     inner join tu_province as prvin on addr.prvin_id = prvin.prvin_id
                     inner join tu_district as distr on addr.distr_id = distr.distr_id
                     inner join tu_commune as commu on addr.commu_id = commu.commu_id
-                    where cooth_nu_nb_overdue_in_days  ". ( $start == 0 ?' <= 0' : '> '.$start.' and cooth_nu_nb_overdue_in_days <= '.$to.'')."  and aptyp_code = 'C' AND commu.commu_nu_latitude > 0 
+                    where cooth_nu_nb_overdue_in_days  ". ( $start == 0 ?' <= 0' : '> '.$start.' and cooth_nu_nb_overdue_in_days <= '.$to.'')."  and aptyp_code = 'C' AND commu.commu_nu_latitude > 0
                     GROUP BY (prvin.prvin_desc_en ,distr.distr_desc_en, commu.commu_id)
 
                 ");
- 
+
 
         $return = array();
-       
+
          if ( $query->num_rows() > 0 ) {
             foreach ($query->result() as $row) {
              array_push($return, $row);
@@ -67,7 +67,7 @@ class Map_model extends CI_Model {
 
             $query = $this->db->get();
             $return = array();
-       
+
             if ( $query->num_rows() > 0 ) {
                 foreach ($query->result() as $row) {
                  array_push($return, $row);
@@ -95,7 +95,7 @@ class Map_model extends CI_Model {
 
             $query = $this->db->get();
             $return = array();
-       
+
             if ( $query->num_rows() > 0 ) {
                 foreach ($query->result() as $row) {
                  array_push($return, $row);
@@ -110,7 +110,7 @@ class Map_model extends CI_Model {
         public function Qin_days( $start, $to ) {
 
             $arr = ( $start === 0 ? array( 'cooth_nu_nb_overdue_in_days <= ' => 0, 'aptyp_code' => 'C' ) : array( 'cooth_nu_nb_overdue_in_days >' => $start, 'cooth_nu_nb_overdue_in_days <= ' => $to, 'aptyp_code' => 'C' ));
- 
+
             $this->db->select('prvin.prvin_id ,prvin_desc_en ,distr.distr_id,distr_desc_en,count(con.cotra_id) AS overdue');
             $this->db->from('td_contract_other_data as conOther');
             $this->db->join('td_contract as con','conOther.cotra_id = con.cotra_id', 'INNER');
@@ -143,7 +143,7 @@ class Map_model extends CI_Model {
             $arr = ( $start === 0 ? array( 'cooth_nu_nb_overdue_in_days <= ' => 0, 'aptyp_code' => 'C' ) : array( 'cooth_nu_nb_overdue_in_days >' => $start, 'cooth_nu_nb_overdue_in_days <= ' => $to, 'aptyp_code' => 'C' ));
 
             $sort_select = ( $segment == 'prvin_id' ? 'prvin.prvin_id ,prvin_desc_en ,distr.distr_id,distr_desc_en, count(con.cotra_id) AS overdue' : 'prvin.prvin_id, prvin_desc_en, distr.distr_id, distr_desc_en, commu.commu_id,commu_desc_en, count(con.cotra_id) AS overdue');
- 
+
             $this->db->select($sort_select);
             $this->db->from('td_contract_other_data as conOther');
             $this->db->join('td_contract as con','conOther.cotra_id = con.cotra_id', 'INNER');
@@ -155,7 +155,7 @@ class Map_model extends CI_Model {
             $this->db->join('tu_province as prvin','addr.prvin_id = prvin.prvin_id', 'INNER');
             $this->db->join('tu_district as distr','addr.distr_id = distr.distr_id', 'INNER');
 
-            if( $segment == 'distr_id' ) { $this->db->join('tu_commune as commu','addr.commu_id = commu.commu_id', 'INNER'); } 
+            if( $segment == 'distr_id' ) { $this->db->join('tu_commune as commu','addr.commu_id = commu.commu_id', 'INNER'); }
         
             $this->db->where($arr);
             $this->db->where( ( $segment == 'prvin_id'  ? array('prvin.prvin_id' => $id ) : array('distr.distr_id' => $id ) ) );
