@@ -22,7 +22,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5> <?php echo $main_title;?> </h5>
+                    <h5><?php echo $main_title;?></h5>
 
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -32,10 +32,7 @@
                             <i class="fa fa-wrench"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Create</a>
-                            </li>
-                            <li><a href="<?php echo base_url('gps-syn/auth/user/logout')?>">Logout</a>
-                            </li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/create')?>"> Create User</a></li>
                         </ul>
                         <a class="close-link">
                             <i class="fa fa-times"></i>
@@ -50,33 +47,38 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                            <th>Edit</th>
+                            <th>Name</th>
+                            <th data-hide="phone,tablet">Role</th>
+                            <th data-hide="phone,tablet">Set password</th>
+                            <th data-hide="phone,tablet">Status</th>
+                            <th data-hide="phone,tablet">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php if(count($query)):?>
-                            <?php foreach( $query as $row ):?>
-                                <tr>
-                                    <td><?php echo $row->prvin_id;?></td>
-                                    <td><?php echo $row->prvin_desc_en;?></td>
-                                    <td><?php echo $row->prvin_nu_latitude;?></td>
-                                    <td><?php echo $row->prvin_nu_longitude;?></td>
-                                    <td>
-                                        <?php echo anchor('setting/province/edit/' . $row->prvin_id, 'Edit');?>
-                                    </td>
-                                </tr>
-                            <?php endforeach;?>
+                            <?php $i= 1;?>
+                            <?php foreach($query as $row):?>
+                            <tr class="gradeX">
+                                <td><?php echo $i++;?></td>
+                                <td><?php echo $row->first_name;?></td>
+                                <td>Admin</td>
+                                <td class="center">
+                                    <?php echo anchor('gps-syn/auth/user/change_password', '<i class="fa fa-lock" aria-hidden="true"></i>')?>
+                                </td>
+                                </td>
+                                </td>
+                                <td>
+                                    <?php echo anchor('gps-syn/auth/user/status', ( $row->status == 1 ? 'Active' : 'Inactive' ))?>
+                                </td>
+                                <td class="center">
+                                    <?php echo anchor('gps-syn/auth/user/status', 'Edit')?>
+                                    |
+                                    <?php echo anchor('gps-syn/auth/user/status', 'x')?>
+                                </td>
+                            </tr>
+                                <?php endforeach;?>
                         <?php endif;?>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="5">
-                                <ul class="pagination pull-right"></ul>
-                            </td>
-                        </tr>
+
                         </tfoot>
                     </table>
                 </div>
@@ -85,7 +87,3 @@
     </div>
 </div>
 <div class="footer">
-
-
-
-<

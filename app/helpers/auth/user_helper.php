@@ -27,7 +27,7 @@
         {
             //redirect(base_url().'login');
             $ci_obj->session->set_flashdata('failure', 'Login Required');
-            redirect('auth/user');
+            redirect('login');
         }
     }
 ?>

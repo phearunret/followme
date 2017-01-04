@@ -54,7 +54,7 @@
         <?php
         }
         ?>
-        <form class="m-t" role="form" action="<?php echo base_url('auth/user'); ?>" method="post">
+        <form class="m-t" role="form" action="<?php echo base_url('login'); ?>" method="post">
             <div class="form-group">
                 <input name="email" type="email" class="form-control" placeholder="Email" required="required">
             </div>

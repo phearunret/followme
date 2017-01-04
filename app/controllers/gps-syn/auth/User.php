@@ -9,15 +9,22 @@
             $this->load->library('form_validation');
             $this->load->library('encrypt');
             $this->load->library('session');
-            $this->load->model('auth/user_model');
+            $this->load->model('auth/user_model', 'u');
             $this->load->helper('auth/user_helper');
+        }
+
+        public function index(){
+            $data['main_title'] = 'Users';
+            $data['query'] = $this->u->read($id = null );
+            $data['template'] ='auth/index';
+            $this->load->view('gps-syn/includes/template', $data);
         }
 
 
         /*
          * Display user signup.
          */
-        public function signup()
+        public function create()
         {
             if(!empty($this->session->userdata('logged_in')))
                 redirect('auth/user/dashboard');
@@ -46,7 +53,7 @@
                     
                     
                     $user_id = 0;
-                    $user_id = $this->user_model->update_user($input_data);
+                    $user_id = $this->u->update_user($input_data);
                     
                     if(!empty($user_id))
                     {
@@ -89,10 +96,10 @@
         {
             $random_string = $this->uri->segment(4);
             
-            $user_details = $this->user_model->get_user_details_by_randomstring($random_string);
+            $user_details = $this->u->get_user_details_by_randomstring($random_string);
             if(!empty($user_details))
             {
-                $status = $this->user_model->update_active_user($random_string);
+                $status = $this->u->update_active_user($random_string);
                 if($status == 1)
                 {
                     $this->session->set_flashdata('success','Your account has been activated. Please login..');
@@ -128,15 +135,15 @@
                 else
                 {
                     $email = $this->input->post('email');
-                    $status = $this->user_model->check_email_exist($email);
+                    $status = $this->u->check_email_exist($email);
                     if($status == 1)
                     {
-                        $user_details = $this->user_model->get_user_details($email);
+                        $user_details = $this->u->get_user_details($email);
 
                         $data['forget_password_random_string'] = generate_random().time();
                         $data['email'] = $email;
 
-                        $forget_password_status = $this->user_model->update_forget_password_random_string($data);
+                        $forget_password_status = $this->u->update_forget_password_random_string($data);
                         if($forget_password_status)
                         {
                             $email_data = array();
@@ -201,7 +208,7 @@
         public function reset_password()
         {
             $random_string = $this->uri->segment(4);
-            $user_details = $this->user_model->get_user_details_reset_password($random_string);
+            $user_details = $this->u->get_user_details_reset_password($random_string);
             if(!empty($user_details))
             {
                 if($random_string == $user_details['forget_password_random_string'])
@@ -222,10 +229,10 @@
                             $input_data['password'] = $this->encrypt->encode($password);
                             $input_data['email'] = $user_details['email'];
                             $input_data['reset_password_link'] = $random_string;
-                            $status = $this->user_model->update_password($input_data);
+                            $status = $this->u->update_password($input_data);
                             if($status)
                             {
-                                $this->user_model->update_reset_link($input_data['email']);
+                                $this->u->update_reset_link($input_data['email']);
                                 $this->session->set_flashdata('success','Password reset was successfully complete. Please login with new password.');
                                 redirect('auth/user');  
                             }
@@ -268,14 +275,16 @@
                 $this->form_validation->set_rules('conf_password', 'Confirm Password', 'trim|required|matches[password]');
                 if ($this->form_validation->run() == FALSE)
                 {
-                    $this->load->view('auth/change_password');
+                    $data['main_title'] = 'Change password';
+                    $data['template'] ='auth/change_password';
+                    $this->load->view('gps-syn/includes/template', $data);
                 }
                 else
                 {
                     $password = $this->input->post('password');
                     $input_data['password'] = $this->encrypt->encode($password);
                     $input_data['email'] = $this->session->userdata('logged_in')['email'];
-                    $status = $this->user_model->update_change_password($input_data);
+                    $status = $this->u->update_change_password($input_data);
                     if($status)
                     {
                         $this->session->set_flashdata('success','Password reset was successfully complete.');

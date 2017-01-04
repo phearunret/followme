@@ -22,7 +22,7 @@
                 $this->form_validation->set_rules('password', 'Password', 'trim|required');
                 if ($this->form_validation->run() == FALSE)
                 {
-                        $this->load->view('auth/login');
+                        $this->load->view('login');
                 }
                 else
                 {
@@ -35,13 +35,13 @@
                     }
                     else
                     {
-                        redirect('auth/user');
+                        redirect('login');
                     }
                 }
             }
             else
             {
-                $this->load->view('auth/login');
+                $this->load->view('login');
             }
 	    }
 

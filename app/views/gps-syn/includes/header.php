@@ -33,9 +33,9 @@
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="contacts.html"> Authentication </a></li>
-                            <li><a href="<?php echo base_url('auth/user/change_password')?>">Change password </a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/change_password')?>">Change password </a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo base_url('auth/user/logout')?>">Logout</a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/logout')?>">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -185,7 +185,7 @@
 
 
                     <li>
-                        <a href="<?php echo base_url('auth/user/logout')?>">
+                        <a href="<?php echo base_url('gps-syn/auth/user/logout')?>">
                             <i class="fa fa-sign-out"></i> Log out
                         </a>
                     </li>

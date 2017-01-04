@@ -15,7 +15,7 @@ class Province extends CI_Controller {
 	public function index($id = null)
 	{
  
-        $data['main_title'] = 'Records - Provinces';
+        $data['main_title'] = 'Provinces';
         $data['query'] = $this->addr->rquery($id, 'tu_province', null);
 		$data['template'] ='maps/province/index';
 		$this->load->view('gps-syn/includes/template', $data);

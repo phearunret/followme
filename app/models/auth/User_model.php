@@ -9,6 +9,15 @@
             $this->load->library('session');
             $this->load->database();
         }
+
+        public function read($id = null ){
+            if(is_null( $id )){
+                return $this->db->get('tu_gps_syn_usr')->result();
+            }else{
+                return $this->db->get_where('tu_gps_syn_usr', array('syn_usr_id' => $id ))->row();
+            }
+        }
+
 	    public function authenticate($email, $password)
         {
             $this->db->select('*');
