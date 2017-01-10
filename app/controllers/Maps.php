@@ -9,7 +9,36 @@ class Maps extends CI_Controller {
     }
 
     public function t(){
-      $query = $this->db->select('commu_id,commu_nu_latitude, commu_nu_longitude')->get_where('tu_commune_new',array('commu_nu_latitude !=' => null))->result();
+
+
+      $query = $this->db->select('prvin_id,prvin_nu_latitude, prvin_nu_longitude')->get_where('tu_province_new',array('prvin_nu_latitude !=' => null))->result();
+
+        if(count($query)){
+            foreach($query as $row ){
+                $this->db->where(array('prvin_id' => $row->prvin_id));
+                $this->db->update('tu_province', array('prvin_nu_latitude' => $row->prvin_nu_latitude, 'prvin_nu_longitude' => $row->prvin_nu_longitude ));
+            }
+            //print_r($query);
+        }
+
+        /*
+         *
+         *  $query = $this->db->select('distr_id,distr_nu_latitude, distr_nu_longitude')->get_where('tu_district_new',array('distr_nu_latitude !=' => null))->result();
+
+        if(count($query)){
+            foreach($query as $row ){
+                $this->db->where(array('distr_id' => $row->distr_id));
+                $this->db->update('tu_district', array('distr_nu_latitude' => $row->distr_nu_latitude, 'distr_nu_longitude' => $row->distr_nu_longitude ));
+            }
+            //print_r($query);
+        }
+         *
+         * */
+
+    /*
+     *
+     *
+        $query = $this->db->select('commu_id,commu_nu_latitude, commu_nu_longitude')->get_where('tu_commune_new',array('commu_nu_latitude !=' => null))->result();
 
         if(count($query)){
             foreach($query as $row ){
@@ -18,6 +47,7 @@ class Maps extends CI_Controller {
             }
             //print_r($query);
         }
+    */
     }
 
 	public function index()
@@ -46,7 +76,7 @@ class Maps extends CI_Controller {
                         $data[$i]['lon'] = $coordinate->lon;
                         $desc = '<b class="text-warning">' . ( $start == 0 ? 'Number leasee no overdue ' . ' ( '.$coordinate->overdue .' )' :  'Number Leasee '. ($to == 9168 ? 'Over 90' : 'in '. $to ) . ' days'.  ' (' .$coordinate->overdue .')' ) . '</b>';
                         $desc .= '<p class="text-info">';
-                        $desc .=  $coordinate->distr_desc_en .' District,' .$coordinate->commu_desc_en .' Commune, ' . $coordinate->prvin_desc_en . ' Province' ;
+                        $desc .=  $coordinate->prvin_desc_en .' prvinict,' .$coordinate->commu_desc_en .' Commune, ' . $coordinate->prvin_desc_en . ' Province' ;
                         $desc .= '</p>';
                         $data[$i]['desc'] =   $desc;
                         $data[$i]['icon'] =   base_url('assets/images/icons/overdue_in_') . $start .'.png';
@@ -86,7 +116,7 @@ class Maps extends CI_Controller {
                 $desc .= '<h5><b> '.$fco->civil_code.'. '. $fco->perso_va_lastname_en . ' ' .$fco->perso_va_firstname_en.'</b></h5>';
                 $desc .= '<p> <b> Number overdue ('.$fco->num_overdue .') </b></p>';
                 $desc .= '<p>';
-                $desc .=  $fco->distr_desc_en .' Commune,' .$fco->commu_desc_en .' District, ' . $fco->prvin_desc_en . ' Province' ;
+                $desc .=  $fco->prvin_desc_en .' Commune,' .$fco->commu_desc_en .' prvinict, ' . $fco->prvin_desc_en . ' Province' ;
                 $desc .= '</p>';
                 $desc .= '</div>'; 
                 $desc .= '</div>'; 
@@ -118,7 +148,7 @@ class Maps extends CI_Controller {
             foreach($query as $item){
                 $i++;
                 $data[$i]['overdue'] = '<li class="itm-lst"> <h6 class="text-warning"> Number of Leasee ('. $item->overdue . ') </h6>';
-                $address ='<span class="dropdown">'. anchor('maps/sort_addr_by_id/distr_id/' . $item->distr_id .'/' . $start .'/' . $to, $item->distr_desc_en .' District, ', array('class' => 'dropdown-toggle addr_id', 'data-toggle' => 'dropdown')) .'<ul class="dropdown-menu" role="menu"> <li> <span class="btn btn-link">Loading...</span> </li> </ul></span>';
+                $address ='<span class="dropdown">'. anchor('maps/sort_addr_by_id/prvin_id/' . $item->prvin_id .'/' . $start .'/' . $to, $item->prvin_desc_en .' prvinict, ', array('class' => 'dropdown-toggle addr_id', 'data-toggle' => 'dropdown')) .'<ul class="dropdown-menu" role="menu"> <li> <span class="btn btn-link">Loading...</span> </li> </ul></span>';
 
                 $address .= '<span class="dropdown">'. anchor('maps/sort_addr_by_id/prvin_id/' . $item->prvin_id .'/' .$start .'/' .$to, $item->prvin_desc_en .' Province', array('class' => 'dropdown-toggle addr_id', 'data-toggle' => 'dropdown')) .'<ul class="dropdown-menu" role="menu"> <li> <span class="btn btn-link">Loading...</span> </li></ul> </span>';
 
@@ -144,7 +174,7 @@ class Maps extends CI_Controller {
             foreach($query as $item){
                 $i++;
                 $addr .= '<li class="btn-lnk">';
-                $addr .= '<p class="text-info">'. ( $segment == 'prvin_id' ? $item->distr_desc_en .' District'  : $item->commu_desc_en . ' Commune' ) .'<b class="text-warning"> ('. $item->overdue .') </b> '.' </p>';
+                $addr .= '<p class="text-info">'. ( $segment == 'prvin_id' ? $item->prvin_desc_en .' prvinict'  : $item->commu_desc_en . ' Commune' ) .'<b class="text-warning"> ('. $item->overdue .') </b> '.' </p>';
                 $addr .= '</li>';
                 $data[$i]['addr'] = $addr;  
             }
@@ -172,12 +202,5 @@ class Maps extends CI_Controller {
 
 
 
-    public function model(){
-
-        $data['main_title'] = 'Model';
-        $data['template'] ='model';
-        $this->load->view('includes/template', $data);
-
-    }
 
 }//end class

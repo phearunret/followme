@@ -54,7 +54,22 @@
                                             ?>
 
                     <?php echo form_open();?>
-                  
+                    <div class="form-group">
+                        <label>First name</label>
+                        <input class="form-control input-sm" type="text" name="fname" id="fname" placeholder="First Name" value="<?php echo set_value('fname'); ?>" />
+                    </div><!--/form-group-->  
+
+                    <div class="form-group">
+                        <label>Last name </label>
+                         <input class="form-control input-sm" type="text" name="lname" id="lname" placeholder="Last Name" value="<?php echo set_value('lname'); ?>">
+                    </div><!--/form-group-->
+
+                    <div class="form-group">
+                        <label>Email </label>
+                        <input class="form-control input-sm" type="text" name="email" id="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
+                    </div><!--/form-group-->  
+
+
                     <div class="form-group">
                         <label> Password </label>
                          <input class="form-control input-sm" type="password" name="password" id="password" placeholder="Password">

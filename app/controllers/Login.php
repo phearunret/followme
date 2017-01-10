@@ -15,7 +15,7 @@
 	    public function index()
 	    {
             if(!empty($this->session->userdata('logged_in')))
-                redirect('auth/user/dashboard');
+                redirect('gps-syn/dashboard');
             if(!empty($this->input->post()))
             {
                 $this->form_validation->set_rules('email', 'Email', 'trim|required');

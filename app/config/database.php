@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.7.8',
+	'hostname' => '192.168.7.7',
 	'username' => 'efinance',
 	'password' => 'efinance',
 	'database' => 'nkr_efinance',
@@ -92,5 +92,6 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => TRUE,
+    'port' => '5433'
 );

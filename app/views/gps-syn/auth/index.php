@@ -1,22 +1,4 @@
-
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2><?php echo $main_title;?></h2>
-        <ol class="breadcrumb">
-            <li>
-                <a>Tables</a>
-            </li>
-            <li class="active">
-                <strong><?php echo $main_title;?></strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-lg-2">
-
-    </div>
-</div>
-
+ 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -71,9 +53,14 @@
                                     <?php echo anchor('gps-syn/auth/user/status', ( $row->status == 1 ? 'Active' : 'Inactive' ))?>
                                 </td>
                                 <td class="center">
-                                    <?php echo anchor('gps-syn/auth/user/status', 'Edit')?>
+
+                                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+                                        Tooltip on bottom
+                                    </button>
+
+                                    <?php //echo anchor('gps-syn/auth/user/status', 'Edit')?>
                                     |
-                                    <?php echo anchor('gps-syn/auth/user/status', 'x')?>
+                                    <?php //echo anchor('gps-syn/auth/user/status', 'x')?>
                                 </td>
                             </tr>
                                 <?php endforeach;?>

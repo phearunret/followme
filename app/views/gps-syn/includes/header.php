@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <?php echo link_tag(array('href'=>'assets/images/icons/gle-log.ico','rel'=>'shortcut icon')); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?php echo $main_title;?> | Followmee </title>
+    <title> <?php echo $main_title;?> </title>
     <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.css')?>" rel="stylesheet">
     <!-- FooTable -->
@@ -32,7 +32,7 @@
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
-                            <li><a href="contacts.html"> Authentication </a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user')?>"> Authentication </a></li>
                             <li><a href="<?php echo base_url('gps-syn/auth/user/change_password')?>">Change password </a></li>
                             <li class="divider"></li>
                             <li><a href="<?php echo base_url('gps-syn/auth/user/logout')?>">Logout</a></li>
@@ -140,6 +140,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!--
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                             <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
@@ -182,7 +183,7 @@
                             </li>
                         </ul>
                     </li>
-
+                    -->
 
                     <li>
                         <a href="<?php echo base_url('gps-syn/auth/user/logout')?>">
@@ -193,3 +194,20 @@
 
             </nav>
         </div>
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2><?php echo $main_title;?></h2>
+        <ol class="breadcrumb">
+            <li>
+                <a>Tables</a>
+            </li>
+            <li class="active">
+                <strong><?php echo $main_title;?></strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>

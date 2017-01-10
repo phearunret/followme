@@ -1,6 +1,6 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
-    class User extends CI_Controller 
+    class User extends Gps_Controller
     {
         public function __construct()
         {
@@ -14,6 +14,7 @@
         }
 
         public function index(){
+
             $data['main_title'] = 'Users';
             $data['query'] = $this->u->read($id = null );
             $data['template'] ='auth/index';
@@ -22,12 +23,11 @@
 
 
         /*
-         * Display user signup.
+         * Display user create.
          */
         public function create()
         {
-            if(!empty($this->session->userdata('logged_in')))
-                redirect('auth/user/dashboard');
+
             if(!empty($this->input->post()))
             {
                 $this->form_validation->set_rules('fname', 'First Name', 'trim|required');
@@ -37,41 +37,48 @@
 				$this->form_validation->set_rules('conf_password', 'Confirm Password', 'trim|required|matches[password]');
                 if ($this->form_validation->run() == FALSE)
                 {
-                        $this->load->view('auth/signup');
+                    
+                    $data['main_title'] ='Create';
+                    $data['template'] ='auth/create';
+                    $this->load->view('gps-syn/includes/template', $data); 
+                    
                 }
                 else
                 {
-                    $input_data['first_name'] = $this->input->post('fname',TRUE);	
-                    $input_data['last_name'] = $this->input->post('lname',TRUE);	
+                    $input_data['first_name'] = $this->input->post('fname',TRUE);
+                    $input_data['last_name'] = $this->input->post('lname',TRUE);
                     $input_data['email'] = $this->input->post('email',TRUE);
                     $input_data['password'] = $this->input->post('password',TRUE);
-                    
+
                     $input_data['password'] = $this->encrypt->encode($input_data['password']);
-                        
+
                     $input_data['usr_activation_link'] = generate_random().time();
                     $input_data['created_on'] = date("Y-m-d H:i:s");
-                    
-                    
+
+
                     $user_id = 0;
                     $user_id = $this->u->update_user($input_data);
-                    
+
                     if(!empty($user_id))
                     {
-                       
-                        $this->user_create_activation_sendmail($input_data);
-                        $this->session->set_flashdata('success','Activation link sent to your email. Please active.');
-                        redirect('auth/user/signup');
+
+                        //$this->user_create_activation_sendmail($input_data);
+                        //$this->session->set_flashdata('success','Activation link sent to your email. Please active.');
+                        $this->session->set_flashdata('success','The record was saved.');
+                        redirect('auth/user/create');
                     }
                     else
                     {
                         $this->session->set_flashdata('failure','Thre was a problem please try again later.');
-                        redirect('auth/user/signup');
+                        redirect('auth/user/create');
                     }
                 }
             }
             else
             {
-                $this->load->view('auth/signup');
+                $data['main_title'] ='Create';
+                $data['template'] ='auth/create';
+                $this->load->view('gps-syn/includes/template', $data);
             }
         }
         public function user_create_activation_sendmail($input_data)
@@ -95,7 +102,7 @@
         public function active_user()
         {
             $random_string = $this->uri->segment(4);
-            
+
             $user_details = $this->u->get_user_details_by_randomstring($random_string);
             if(!empty($user_details))
             {
@@ -114,7 +121,7 @@
             else
             {
                 $this->session->set_flashdata('failure','Acount already activated. Please login..');
-                redirect('auth/user');		
+                redirect('auth/user');
             }
         }
 
@@ -172,16 +179,16 @@
             {
                 if(!empty($this->session->userdata('logged_in')))
                     redirect('auth/user/dashboard');
-                $this->load->view('auth/forget_password');  
+                $this->load->view('auth/forget_password');
             }
-            
+
         }
 
         /*
         *   Send Forget password mail.
         */
         public function user_forget_sendmail($email_data)
-        {       
+        {
             $this->load->helper('auth/email_helper');
             $template_config = array(
                 'type' => 'forget_password',
@@ -234,12 +241,12 @@
                             {
                                 $this->u->update_reset_link($input_data['email']);
                                 $this->session->set_flashdata('success','Password reset was successfully complete. Please login with new password.');
-                                redirect('auth/user');  
+                                redirect('auth/user');
                             }
                             else
                             {
                                 $this->session->set_flashdata('failure','There was a problem. Please try again later..');
-                                redirect('auth/user/forget_password'); 
+                                redirect('auth/user/forget_password');
                             }
                         }
                     }
@@ -253,13 +260,13 @@
                 else
                 {
                     $this->session->set_flashdata('failure','Invalid request.');
-                    redirect('auth/user/forget_password');     
+                    redirect('auth/user/forget_password');
                 }
             }
             else
             {
                 $this->session->set_flashdata('failure','Invalid request.');
-                redirect('auth/user/forget_password');     
+                redirect('auth/user/forget_password');
             }
         }
 
@@ -268,14 +275,15 @@
         */
         public function change_password()
         {
-            check_user_sess();
+
+           // check_user_sess();
             if($this->input->post())
             {
                 $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]');
                 $this->form_validation->set_rules('conf_password', 'Confirm Password', 'trim|required|matches[password]');
                 if ($this->form_validation->run() == FALSE)
                 {
-                    $data['main_title'] = 'Change password';
+                    $data['main_title'] ='Change password';
                     $data['template'] ='auth/change_password';
                     $this->load->view('gps-syn/includes/template', $data);
                 }
@@ -288,23 +296,25 @@
                     if($status)
                     {
                         $this->session->set_flashdata('success','Password reset was successfully complete.');
-                        redirect('auth/user/change_password');  
+                        redirect('gps-syn/auth/user/change_password');
                     }
                     else
                     {
                         $this->session->set_flashdata('failure','There was a problem. Please try again later..');
-                        redirect('auth/user/change_password'); 
+                        redirect('gps-syn/auth/user/change_password');
                     }
                 }
             }
             else
             {
-                $this->load->view('auth/change_password');
+                $data['main_title'] ='Change password';
+                $data['template'] ='auth/change_password';
+                $this->load->view('gps-syn/includes/template', $data);
             }
         }
 
         /*
-        *   User logout 
+        *   User logout
         */
         public function logout()
         {
