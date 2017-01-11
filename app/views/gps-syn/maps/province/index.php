@@ -65,7 +65,7 @@
                                     <td><?php echo $row->prvin_nu_latitude;?></td>
                                     <td><?php echo $row->prvin_nu_longitude;?></td>
                                     <td>
-                                        <?php echo anchor('setting/province/edit/' . $row->prvin_id, 'Edit');?>
+                                        <?php echo anchor('gps-syn/maps/province/edit/' . $row->prvin_id, 'Edit');?>
                                     </td>
                                 </tr>
                             <?php endforeach;?>
@@ -85,7 +85,3 @@
     </div>
 </div>
 <div class="footer">
-
-
-
-<

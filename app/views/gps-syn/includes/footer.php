@@ -1,6 +1,6 @@
 
 <div class="pull-right">
-    GL Finance Fast <strong>&</strong> Forword.
+    GL Finance First,Fast <strong>&</strong> Forword.
 </div>
 <div>
     <strong>Copyright</strong> GL Company &copy; 2016-2017
@@ -12,8 +12,7 @@
 
 
 
-<!-- Mainly scripts -->
-<script src="<?php echo base_url('assets/js/jquery.js')?>"></script>
+
 <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/metisMenu/jquery.metisMenu.js')?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/slimscroll/jquery.slimscroll.min.js')?>"></script>
@@ -30,11 +29,9 @@
     $(document).ready(function() {
 
         $('.footable').footable();
-        $('.footable2').footable();
-
     });
 
-</script>
+ </script>
 
 </body>
 

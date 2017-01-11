@@ -1,3 +1,3 @@
-<?php $this->load->view('setting/includes/header');?>
-<?php $this->load->view('setting/'.$template);?>
-<?php $this->load->view('setting/includes/footer');?>
+<?php $this->load->view('gps-syn/includes/header');?>
+<?php $this->load->view('gps-syn/'.$template);?>
+<?php $this->load->view('gps-syn/includes/footer');?>

@@ -1,8 +1,22 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			<h2><?php echo $main_title;?></h2>
-			<hr />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2><?php echo $main_title;?></h2>
+        <ol class="breadcrumb">
+            <li>
+                <a>Tables</a>
+            </li>
+            <li class="active">
+                <strong><?php echo $main_title;?></strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -24,7 +38,7 @@
 						<td><?php echo $row->leodu_longtitue;?></td>
 						
 						<td>
-							<?php echo anchor('setting/fcco/delete/' . $row->leodu_id, 'Delete');?>
+							<?php echo anchor('gps-syn/fcco/delete/' . $row->leodu_id, 'Delete');?>
 						</td>
 					</tr>
 					<?php endforeach;?>
@@ -32,6 +46,9 @@
 				</tfoot>
 
 			</table>
-		</div><!--col-xs-12-->
-	</div><!-/row-->
-</div><!--container-->
+		 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
