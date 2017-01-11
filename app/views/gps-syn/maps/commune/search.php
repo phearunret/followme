@@ -1,20 +1,26 @@
-<div class="container">
-	
+		
 		<?php if(count($query)):?>
-		<div class="row">
-			<div class="col-xs-6">
-				<h2><?php echo $main_title;?> - <?php echo $query->commu_desc_en;?></h2>
-			</div>
-			<div class="col-xs-2 pull-right">
-			<div style="height:15px;"></div>
-			<?php echo anchor('setting/commune', 'Records', array('class' => 'btn btn-default btn-block'));?>
-			</div>
-		</div>
-		<hr />
+			<div class="row wrapper border-bottom white-bg page-heading">
+	            <div class="col-lg-10">
+	                <h2><?php echo $main_title;?></h2>
+	                <ol class="breadcrumb">
+	                    <li>
+	                        <a>Tables</a>
+	                    </li>
+	                    <li class="active">
+	                        <strong><?php echo $main_title;?></strong>
+	                    </li>
+	                </ol>
+	            </div>
+	            <div class="col-xs-2 pull-right">
+				<div style="height:15px;"></div>
+				<?php echo anchor('gps-syn/maps/commune', 'Records', array('class' => 'btn btn-default btn-block'));?>
+				</div>
+        	</div>
 		<div class="row">
 		<div class="col-xs-12">
 			 <?php echo $this->session->flashdata('msg'); ?>
-			<?php echo form_open('setting/commune/edit/'. $id );?>
+			<?php echo form_open('gps-syn/commune/edit/'. $id );?>
 			<?php echo form_hidden('id', $query->commu_id);?>
 
 			  <div class="form-group">
@@ -45,9 +51,7 @@
 	</div><!-/row-->
 		<?php endif;?>
 	<div style="height:30px;"></div>
-</div><!--container-->
-
-
+	<div class="footer">
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function updateDatabase(newLat, newLng)

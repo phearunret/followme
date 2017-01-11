@@ -9,7 +9,7 @@ class Fcco extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->database();
-        $this->load->model('setting/fcco_model', 'fcco');
+        $this->load->model('gps-syn/maps/fcco_model', 'fcco');
     
 
     }
@@ -19,8 +19,8 @@ class Fcco extends CI_Controller {
  
         $data['main_title'] = 'Records - fcco';
         $data['query'] = $this->fcco->rquery($id, 'td_lessee_overdue_paid', null);
-		$data['template'] ='fcco/index';
-		$this->load->view('setting/includes/template', $data);
+		$data['template'] ='maps/fcco/index';
+		$this->load->view('gps-syn/includes/template', $data);
 	}
 
     public function edit($id = null)
@@ -35,8 +35,8 @@ class Fcco extends CI_Controller {
         {
           
             $data['main_title'] = 'Insert Fcco Activities';
-            $data['template'] ='fcco/edit';
-            $this->load->view('setting/includes/template', $data);
+            $data['template'] ='maps/fcco/edit';
+            $this->load->view('gps-syn/includes/template', $data);
 
         }
         else
@@ -82,13 +82,13 @@ class Fcco extends CI_Controller {
             if ($this->db->insert('td_lessee_overdue_paid', $data ))
             {
                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully saved!  </div>');
-                redirect('setting/fcco');
+                redirect('gps-syn/fcco');
             }
             else
             {
                 // error
                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-                redirect('setting/fcco');
+                redirect('gps-syn/fcco');
             }
         }
         
@@ -100,13 +100,13 @@ class Fcco extends CI_Controller {
          if ($this->db->delete('td_lessee_overdue_paid', array('leodu_id' => $id ) ))
             {
                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully delete(d)!  </div>');
-                redirect('setting/fcco');
+                redirect('gps-syn/fcco');
             }
             else
             {
                 // error
                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-                redirect('setting/fcco');
+                redirect('gps-syn/fcco');
             }
          
     

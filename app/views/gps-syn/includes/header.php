@@ -13,6 +13,8 @@
     <link href="<?php echo base_url('assets/css/plugins/footable/footable.core.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/gps/animate.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/gps/style.css')?>" rel="stylesheet">
+    <!-- Mainly scripts -->
+    <script src="<?php echo base_url('assets/js/jquery.js')?>"></script>
 
 </head>
 
@@ -59,12 +61,9 @@
                 <li>
                     <a><i class="fa fa-comments"></i> <span class="nav-label"> Notication </span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="index.html"> FCO</a></li>
+                        <li><a href="<?php echo base_url('gps-syn/maps/fcco')?>""> FCO</a></li>
                     </ul>
-                </li>
-
-
-
+                </li>               
             </ul>
 
         </div>
@@ -95,7 +94,7 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a7.jpg">
+                                        <!-- <img alt="image" class="img-circle" src="img/a7.jpg"> -->
                                     </a>
                                     <div class="media-body">
                                         <small class="pull-right">46h ago</small>
@@ -108,7 +107,7 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a4.jpg">
+                                        <!-- <img alt="image" class="img-circle" src="img/a4.jpg"> -->
                                     </a>
                                     <div class="media-body ">
                                         <small class="pull-right text-navy">5h ago</small>
@@ -121,7 +120,7 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/profile.jpg">
+                                        <!-- <img alt="image" class="img-circle" src="img/profile.jpg"> -->
                                     </a>
                                     <div class="media-body ">
                                         <small class="pull-right">23h ago</small>

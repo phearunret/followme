@@ -2,30 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Maps extends CI_Controller {
-	function __construct() {
+    function __construct() {
         parent::__construct();
         date_default_timezone_set("Asia/Bangkok");
         $this->load->model('Map_model', 'map');
     }
 
-    public function t(){
-      $query = $this->db->select('commu_id,commu_nu_latitude, commu_nu_longitude')->get_where('tu_commune_new',array('commu_nu_latitude !=' => null))->result();
-
-        if(count($query)){
-            foreach($query as $row ){
-                $this->db->where(array('commu_id' => $row->commu_id));
-                $this->db->update('tu_commune', array('commu_nu_latitude' => $row->commu_nu_latitude, 'commu_nu_longitude' => $row->commu_nu_longitude ));
-            }
-            //print_r($query);
-        }
-    }
-
-	public function index()
-	{
+    public function index()
+    {
  
         $data['main_title'] = 'GL | Fast & Forword';
         $data['template'] ='index';
         $this->load->view('includes/template', $data);
+
     }
 
     public function record(){
@@ -46,7 +35,7 @@ class Maps extends CI_Controller {
                         $data[$i]['lon'] = $coordinate->lon;
                         $desc = '<b class="text-warning">' . ( $start == 0 ? 'Number leasee no overdue ' . ' ( '.$coordinate->overdue .' )' :  'Number Leasee '. ($to == 9168 ? 'Over 90' : 'in '. $to ) . ' days'.  ' (' .$coordinate->overdue .')' ) . '</b>';
                         $desc .= '<p class="text-info">';
-                        $desc .=  $coordinate->distr_desc_en .' District,' .$coordinate->commu_desc_en .' Commune, ' . $coordinate->prvin_desc_en . ' Province' ;
+                        $desc .=  $coordinate->distr_desc_en .' District,' .$coordinate->commu_desc_en .' Commune, ' . $coordinate->prvin_desc_en . ' Province'.$coordinate->lat. ',' . $coordinate->lon ;
                         $desc .= '</p>';
                         $data[$i]['desc'] =   $desc;
                         $data[$i]['icon'] =   base_url('assets/images/icons/overdue_in_') . $start .'.png';
@@ -59,13 +48,13 @@ class Maps extends CI_Controller {
             }
                 
         }
-        //echo $this->db->last_query();
             
         echo json_encode($data);
+        //echo $this->db->last_query();
 
     }
 
-	public function live_data_update(){
+    public function live_data_update(){
 
         $date = ( $this->input->post('n') == 0 ? date("Y-m-d") : date("Y-m-d H:i:s", time() - 100000 ) );
         $fcos = $this->map->get_today_fco( $date );
@@ -101,7 +90,7 @@ class Maps extends CI_Controller {
         }//FCO
         
          
-	}
+    }
 
     public function leasee_comment(){ 
     
@@ -162,13 +151,13 @@ class Maps extends CI_Controller {
     }
 
 
-	public function error_404(){
+    public function error_404(){
 
-		$data['main_title'] = 'Error 404';
-		$data['template'] ='error_404';
-		$this->load->view('includes/template', $data);
+        $data['main_title'] = 'Error 404';
+        $data['template'] ='error_404';
+        $this->load->view('includes/template', $data);
 
-	}
+    }
 
 
 

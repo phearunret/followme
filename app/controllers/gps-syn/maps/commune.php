@@ -9,9 +9,10 @@ class Commune extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->database();
-        $this->load->model('setting/address_model', 'addr');
+        $this->load->model('gps-syn/maps/address_model', 'addr');
         $this->load->library('googlemaps');
         $this->load->model('map_model', 'maps');
+        $this->load->library('pagination');
 
 
     }
@@ -19,10 +20,10 @@ class Commune extends CI_Controller {
 	public function index($id = null)
 	{
  
-        $data['main_title'] = 'Records- Communes';
+        $data['main_title'] = 'Communes';
         $data['query'] = $this->addr->rquery($id, 'tu_commune', null);
-		$data['template'] ='commune/index';
-		$this->load->view('setting/includes/template', $data);
+		$data['template'] ='maps/commune/index';
+		$this->load->view('gps-syn/includes/template', $data);
 	}
 
     public function edit($id = null)
@@ -39,8 +40,8 @@ class Commune extends CI_Controller {
             $data['main_title'] = 'Edit';
             $data['query'] = $this->addr->rquery($id, 'tu_commune', 'commu_id');
             //echo $this->db->last_query();
-            $data['template'] ='commune/edit';
-            $this->load->view('setting/includes/template', $data);
+            $data['template'] ='maps/commune/edit';
+            $this->load->view('gps-syn/includes/template', $data);
 
         }
         else
@@ -57,13 +58,13 @@ class Commune extends CI_Controller {
             {
                 //echo $this->db->last_query();
                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully saved!  </div>');
-                redirect('setting/commune/edit/' . $this->input->post('id') );
+                redirect('gps-syn/commune/edit/' . $this->input->post('id') );
             }
             else
             {
                 // error
                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-                redirect('setting/commune/edit/' . $this->input->post('id') );
+                redirect('gps-syn/commune/edit/' . $this->input->post('id') );
             }
         }
         
@@ -109,8 +110,8 @@ class Commune extends CI_Controller {
                 $str .= '<td>' .$row->commu_desc_en. '</td>';
                 $str .= '<td>' .$row->commu_nu_latitude. '</td>';
                 $str .= '<td>' .$row->commu_nu_longitude. '</td>';
-                $str .= '<td>' . anchor('setting/commune/track/' .$row->commu_id , 'track'). '</td>'; 
-                $str .= '<td>' . anchor('setting/commune/edit/' .$row->commu_id , 'Edit'). '</td>';
+                $str .= '<td>' . anchor('gps-syn/maps/commune/track/' .$row->commu_id , 'track'). '</td>'; 
+                $str .= '<td>' . anchor('gps-syn/maps/commune/edit/' .$row->commu_id , 'Edit'). '</td>';
                 echo $str.= '</tr>';
 
             }     
@@ -134,11 +135,11 @@ class Commune extends CI_Controller {
         $this->googlemaps->add_marker($marker);
  
         $data['map'] = $this->googlemaps->create_map();
-        $data['main_title'] = 'Statistics Collection';
+        $data['main_title'] = 'Statistics Collection Communes';
         $data['id'] = $id;
         $data['query'] = $this->addr->rquery($id, 'tu_commune', 'commu_id');
-        $data['template'] ='commune/search';
-        $this->load->view('setting/includes/template', $data);
+        $data['template'] ='maps/commune/search';
+        $this->load->view('gps-syn/includes/template', $data);
     }
  
     

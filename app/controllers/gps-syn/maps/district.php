@@ -9,7 +9,7 @@ class District extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->database();
-        $this->load->model('setting/address_model', 'addr');
+        $this->load->model('gps-syn/maps/address_model', 'addr');
         $this->load->library('googlemaps');
         $this->load->model('map_model', 'maps');
 
@@ -18,11 +18,12 @@ class District extends CI_Controller {
 	public function index($id = null)
 	{
  
-        $data['main_title'] = 'Records- Districts';
+        $data['main_title'] = 'Districts';
         $data['query'] = $this->addr->rquery($id, 'tu_district', null);
-		$data['template'] ='district/index';
-		$this->load->view('setting/includes/template', $data);
+		$data['template'] ='maps/district/index';
+		$this->load->view('gps-syn/includes/template', $data);
 	}
+
 
     public function edit($id = null)
     {
@@ -37,8 +38,8 @@ class District extends CI_Controller {
           
             $data['main_title'] = 'Edit';
             $data['query'] = $this->addr->rquery($id, 'tu_district', 'distr_id');
-            $data['template'] ='district/edit';
-            $this->load->view('setting/includes/template', $data);
+            $data['template'] ='maps/district/edit';
+            $this->load->view('gps-syn/includes/template', $data);
 
         }
         else
@@ -54,13 +55,13 @@ class District extends CI_Controller {
             if ($this->addr->modify('tu_district', $data, 'distr_id'))
             {
                 $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully saved!  </div>');
-                redirect('setting/district/edit/' . $this->input->post('id') );
+                redirect('gps-syn/maps/district/edit/' . $this->input->post('id') );
             }
             else
             {
                 // error
                 $this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-                redirect('setting/district/edit/' . $this->input->post('id') );
+                redirect('gps-syn/maps/district/edit/' . $this->input->post('id') );
             }
         }
         
@@ -81,8 +82,8 @@ class District extends CI_Controller {
                 $str .= '<td>' .$row->distr_desc_en. '</td>';
                 $str .= '<td>' .$row->distr_nu_latitude. '</td>';
                 $str .= '<td>' .$row->distr_nu_longitude. '</td>'; 
-                 $str .= '<td>' . anchor('setting/district/track/' .$row->distr_id , 'track'). '</td>';
-                $str .= '<td>' . anchor('setting/district/edit/' .$row->distr_id , 'Edit'). '</td>';
+                 $str .= '<td>' . anchor('gps-syn/maps/district/track/' .$row->distr_id , 'track'). '</td>';
+                $str .= '<td>' . anchor('gps-syn/maps/district/edit/' .$row->distr_id , 'Edit'). '</td>';
                 echo $str.= '</tr>';
 
             }     
@@ -107,13 +108,24 @@ class District extends CI_Controller {
         $this->googlemaps->add_marker($marker);
  
         $data['map'] = $this->googlemaps->create_map();
-        $data['main_title'] = 'Statistics Collection';
+        $data['main_title'] = 'Statistics Collection Districts';
         $data['id'] = $id;
         $data['query'] = $this->addr->rquery($id, 'tu_district', 'distr_id');
-        $data['template'] ='district/search';
-        $this->load->view('setting/includes/template', $data);
+        $data['template'] ='maps/district/search';
+        $this->load->view('gps-syn/maps/includes/template', $data);
     }
  
-    
+    public function t(){
+
+      $query = $this->db->select('distr_id,distr_nu_latitude, distr_nu_longitude')->get_where('tu_district',array('distr_nu_latitude !=' => null))->result();
+
+        if(count($query)){
+            foreach($query as $row ){
+                $this->db->where(array('distr_id' => $row->distr_id));
+                $this->db->update('tu_district', array('distr_nu_latitude' => $row->distr_nu_latitude, 'distr_nu_longitude' => $row->distr_nu_longitude ));
+            }
+            print_r($query);
+        }
+    }
     
 }//end class
