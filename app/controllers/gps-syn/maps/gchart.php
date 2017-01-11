@@ -14,7 +14,7 @@ class Gchart extends CI_Controller
     {
         $data['main_title'] = 'Advance Search';
         $data['template'] ='advance_search';
-        $this->load->view('includes/template', $data);
+        $this->load->view('gps-syn/includes/template', $data);
 
     }
 
@@ -40,7 +40,7 @@ class Gchart extends CI_Controller
 
         $data['main_title'] = 'Pie Chart'. '-' . ( $condition == 't' ? 'Overdue' :  'Never late' );
         $data['template'] ='pie_chart';
-        $this->load->view('includes/template', $data);
+        $this->load->view('gps-syn/includes/template', $data);
 
     }
 
@@ -108,7 +108,7 @@ class Gchart extends CI_Controller
         $this->gcharts->GeoChart('Debt')->setConfig($config);
         $data['main_title'] = 'Geo Chart' . '-' . ( $condition == 't' ? 'Overdue' :  'Never late' );;
         $data['template'] ='geo_chart';
-        $this->load->view('includes/template', $data);
+        $this->load->view('gps-syn/includes/template', $data);
 
     }
 
