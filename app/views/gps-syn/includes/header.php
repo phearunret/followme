@@ -4,17 +4,17 @@
 <head>
 
     <meta charset="utf-8">
-    <?php echo link_tag(array('href'=>'assets/images/icons/gle-log.ico','rel'=>'shortcut icon')); ?>
+    <?php echo link_tag(array('href' => 'assets/images/icons/gle-log.ico', 'rel' => 'shortcut icon')); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?php echo $main_title;?> </title>
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.css')?>" rel="stylesheet">
+    <title> <?php echo $main_title; ?> </title>
+    <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.css') ?>" rel="stylesheet">
     <!-- FooTable -->
-    <link href="<?php echo base_url('assets/css/plugins/footable/footable.core.css')?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/gps/animate.css')?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/gps/style.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/plugins/footable/footable.core.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/gps/animate.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/gps/style.css') ?>" rel="stylesheet">
     <!-- Mainly scripts -->
-    <script src="<?php echo base_url('assets/js/jquery.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.js') ?>"></script>
 
 </head>
 
@@ -27,17 +27,21 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="<?php echo base_url('assets/images/thumbs/profile_small.jpg')?>" />
+                            <img alt="image" class="img-circle"
+                                 src="<?php echo base_url('assets/images/thumbs/profile_small.jpg') ?>"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> Phearun Reth </strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"> Phearun
+                                        Reth </strong>
+                             </span> <span class="text-muted text-xs block">Art Director <b
+                                        class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
-                            <li><a href="<?php echo base_url('gps-syn/auth/user')?>"> Authentication </a></li>
-                            <li><a href="<?php echo base_url('gps-syn/auth/user/change_password')?>">Change password </a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user') ?>"> Authentication </a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/change_password') ?>">Change
+                                    password </a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo base_url('gps-syn/auth/user/logout')?>">Logout</a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/logout') ?>">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -45,25 +49,28 @@
                     </div>
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-map-marker"></i> <span class="nav-label">Maps</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-map-marker"></i> <span class="nav-label">Maps</span> <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="<?php echo base_url('gps-syn/maps/province')?>">Province</a></li>
-                        <li><a href="<?php echo base_url('gps-syn/maps/district')?>"> District </a></li>
-                        <li><a href="<?php echo base_url('gps-syn/maps/commune')?>">Commune</a></li>
+                        <li><a href="<?php echo base_url('gps-syn/maps/province') ?>">Province</a></li>
+                        <li><a href="<?php echo base_url('gps-syn/maps/district') ?>"> District </a></li>
+                        <li><a href="<?php echo base_url('gps-syn/maps/commune') ?>">Commune</a></li>
                     </ul>
 
                 <li>
-                    <a><i class="fa fa-bars"></i> <span class="nav-label"> Overdue </span> <span class="fa arrow"></span></a>
+                    <a><i class="fa fa-bars"></i> <span class="nav-label"> Overdue </span> <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="index.html"> Over 90 days </a></li>
                     </ul>
                 </li>
                 <li>
-                    <a><i class="fa fa-comments"></i> <span class="nav-label"> Notication </span> <span class="fa arrow"></span></a>
+                    <a><i class="fa fa-comments"></i> <span class="nav-label"> Notication </span> <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="<?php echo base_url('gps-syn/maps/fcco')?>""> FCO</a></li>
+                        <li><a href="<?php echo base_url('gps-syn/maps/fcco') ?>""> FCO</a></li>
                     </ul>
-                </li>               
+                </li>
             </ul>
 
         </div>
@@ -73,7 +80,8 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
                     <!--
                     <form role="search" class="navbar-form-custom" action="search_results.html">
                         <div class="form-group">
@@ -84,11 +92,13 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Welcome to <?php echo $this->session->userdata('logged_in')['fname'].' '.$this->session->userdata('logged_in')['lname']; ?>.</span>
+                        <span
+                            class="m-r-sm text-muted welcome-message">Welcome to <?php echo $this->session->userdata('logged_in')['fname'] . ' ' . $this->session->userdata('logged_in')['lname']; ?>
+                            .</span>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                            <i class="fa fa-comments"></i> <span class="label label-warning">16</span>
                         </a>
                         <ul class="dropdown-menu dropdown-messages">
                             <li>
@@ -96,9 +106,11 @@
                                     <a href="profile.html" class="pull-left">
                                         <!-- <img alt="image" class="img-circle" src="img/a7.jpg"> -->
                                     </a>
+
                                     <div class="media-body">
                                         <small class="pull-right">46h ago</small>
-                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>.
+                                        <br>
                                         <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
                                     </div>
                                 </div>
@@ -109,9 +121,11 @@
                                     <a href="profile.html" class="pull-left">
                                         <!-- <img alt="image" class="img-circle" src="img/a4.jpg"> -->
                                     </a>
+
                                     <div class="media-body ">
                                         <small class="pull-right text-navy">5h ago</small>
-                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica
+                                            Smith</strong>. <br>
                                         <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
                                     </div>
                                 </div>
@@ -122,6 +136,7 @@
                                     <a href="profile.html" class="pull-left">
                                         <!-- <img alt="image" class="img-circle" src="img/profile.jpg"> -->
                                     </a>
+
                                     <div class="media-body ">
                                         <small class="pull-right">23h ago</small>
                                         <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
@@ -185,7 +200,7 @@
                     -->
 
                     <li>
-                        <a href="<?php echo base_url('gps-syn/auth/user/logout')?>">
+                        <a href="<?php echo base_url('gps-syn/auth/user/logout') ?>">
                             <i class="fa fa-sign-out"></i> Log out
                         </a>
                     </li>
@@ -194,19 +209,19 @@
             </nav>
         </div>
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2><?php echo $main_title;?></h2>
-        <ol class="breadcrumb">
-            <li>
-                <a>Tables</a>
-            </li>
-            <li class="active">
-                <strong><?php echo $main_title;?></strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-lg-2">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2><?php echo $main_title; ?></h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a>Tables</a>
+                    </li>
+                    <li class="active">
+                        <strong><?php echo $main_title; ?></strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
 
-    </div>
-</div>
+            </div>
+        </div>

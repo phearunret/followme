@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.7.7',
+	'hostname' => '192.168.7.8',
 	'username' => 'efinance',
 	'password' => 'efinance',
-	'database' => 'nkr_efinance',
+	'database' => 'nkr_efinance_100117',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -92,5 +92,6 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => TRUE,
+    'port' => 5432
 );

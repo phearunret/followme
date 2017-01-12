@@ -1,28 +1,9 @@
-
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2><?php echo $main_title;?></h2>
-        <ol class="breadcrumb">
-            <li>
-                <a>Tables</a>
-            </li>
-            <li class="active">
-                <strong><?php echo $main_title;?></strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-lg-2">
-
-    </div>
-</div>
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5> <?php echo $main_title;?> </h5>
+                    <h5> <?php echo $main_title; ?> </h5>
 
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -34,7 +15,7 @@
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#">Create</a>
                             </li>
-                            <li><a href="<?php echo base_url('gps-syn/auth/user/logout')?>">Logout</a>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/logout') ?>">Logout</a>
                             </li>
                         </ul>
                         <a class="close-link">
@@ -53,23 +34,23 @@
                             <th>Title</th>
                             <th>Latitude</th>
                             <th>Longitude</th>
-                            <th>Edit</th>
+                            <th> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if(count($query)):?>
-                            <?php foreach( $query as $row ):?>
+                        <?php if (count($query)): ?>
+                            <?php foreach ($query as $row): ?>
                                 <tr>
-                                    <td><?php echo $row->prvin_id;?></td>
-                                    <td><?php echo $row->prvin_desc_en;?></td>
-                                    <td><?php echo $row->prvin_nu_latitude;?></td>
-                                    <td><?php echo $row->prvin_nu_longitude;?></td>
+                                    <td><?php echo $row->prvin_id; ?></td>
+                                    <td><?php echo $row->prvin_desc_en; ?></td>
+                                    <td><?php echo $row->prvin_nu_latitude; ?></td>
+                                    <td><?php echo $row->prvin_nu_longitude; ?></td>
                                     <td>
-                                        <?php echo anchor('gps-syn/maps/province/edit/' . $row->prvin_id, 'Edit');?>
+                                        <?php echo anchor('gps-syn/maps/province/edit/' . $row->prvin_id, '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'); ?>
                                     </td>
                                 </tr>
-                            <?php endforeach;?>
-                        <?php endif;?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                         </tbody>
                         <tfoot>
                         <tr>

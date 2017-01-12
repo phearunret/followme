@@ -1,10 +1,9 @@
- 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5><?php echo $main_title;?></h5>
+                    <h5><?php echo $main_title; ?></h5>
 
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -14,7 +13,7 @@
                             <i class="fa fa-wrench"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="<?php echo base_url('gps-syn/auth/user/create')?>"> Create User</a></li>
+                            <li><a href="<?php echo base_url('gps-syn/auth/user/create') ?>"> Create User</a></li>
                         </ul>
                         <a class="close-link">
                             <i class="fa fa-times"></i>
@@ -37,34 +36,28 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if(count($query)):?>
-                            <?php $i= 1;?>
-                            <?php foreach($query as $row):?>
-                            <tr class="gradeX">
-                                <td><?php echo $i++;?></td>
-                                <td><?php echo $row->first_name;?></td>
-                                <td>Admin</td>
-                                <td class="center">
-                                    <?php echo anchor('gps-syn/auth/user/change_password', '<i class="fa fa-lock" aria-hidden="true"></i>')?>
-                                </td>
-                                </td>
-                                </td>
-                                <td>
-                                    <?php echo anchor('gps-syn/auth/user/status', ( $row->status == 1 ? 'Active' : 'Inactive' ))?>
-                                </td>
-                                <td class="center">
-
-                                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-                                        Tooltip on bottom
-                                    </button>
-
-                                    <?php //echo anchor('gps-syn/auth/user/status', 'Edit')?>
-                                    |
-                                    <?php //echo anchor('gps-syn/auth/user/status', 'x')?>
-                                </td>
-                            </tr>
-                                <?php endforeach;?>
-                        <?php endif;?>
+                        <?php if (count($query)): ?>
+                            <?php $i = 1; ?>
+                            <?php foreach ($query as $row): ?>
+                                <tr class="gradeX">
+                                    <td><?php echo $i++; ?></td>
+                                    <td><?php echo $row->first_name; ?></td>
+                                    <td>Admin</td>
+                                    <td class="center">
+                                        <?php echo anchor('gps-syn/auth/user/set_password/' .$row->user_id , 'Set password') ?>
+                                    </td>
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <?php echo ( $row->status == 1 ? 'Active' : 'Inactive');?>
+                                    </td>
+                                    <td class="center">
+                                        <?php echo anchor('gps-syn/auth/user/delete/' . $row->user_id , '<i class="fa fa-trash" aria-hidden="true"></i>') ?>
+                                        <?php echo anchor('gps-syn/auth/user/edit/' . $row->user_id , '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>') ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
 
                         </tfoot>
                     </table>

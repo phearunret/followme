@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>way2php.com</title>
+      <title>Followmee</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    <body style="font-family:arial;">
       <table width="800" align="center" cellspacing="0" cellpadding="10" border="0" style="border:solid 1px #ccc;">
@@ -11,11 +11,11 @@
                <?php echo $message;?>
                <br><br><br><br>
                Thanks & Regards,<br>
-               way2php Team
+               Followmee Team
             </td>
          </tr>
          <tr>
-            <td bgcolor="#f5f5f5" style="font-size:12px;" align="center">&copy; 2016 way2php.com All Rights Reserved.</td>
+            <td bgcolor="#f5f5f5" style="font-size:12px;" align="center">&copy; 2016 gl-f.com All Rights Reserved.</td>
          </tr>
       </table>
    </body>
